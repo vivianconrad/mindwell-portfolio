@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindWell | UX Research Case Study | Vi Conrad</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --text: #2D2D2D;
+    --text-light: #6B6B6B;
+    --text-muted: #999999;
+    --green: #5E8B3C;
+    --green-light: #EDF5E5;
+    --green-dark: #3D6B1E;
+    --teal: #148A7D;
+    --teal-light: #E4F2F0;
+    --olive: #8B8B30;
+    --orange: #D4782A;
+    --orange-light: #FDF3EB;
+    --purple: #6B5B95;
+    --purple-light: #F0EDF5;
+    --red-light: #FEF0EE;
+    --border: #E8E8E4;
+    --card: #FFFFFF;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .hero { background: linear-gradient(135deg, #2D3D1E 0%, #3D5B2A 40%, #4A6B34 100%); color: #fff; padding: 80px 0 70px; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; border-radius: 50%; background: rgba(255,255,255,0.03); }
+  .hero-inner { max-width: 900px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+  .hero-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+  .hero h1 { font-family: var(--serif); font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .hero-subtitle { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.75); max-width: 620px; }
+  .hero-meta { margin-top: 32px; display: flex; gap: 40px; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .hero-meta-item strong { display: block; color: rgba(255,255,255,0.85); font-weight: 500; font-size: 14px; }
+  .main { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+  .role-bar { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 28px 32px; margin: -30px 0 48px; position: relative; z-index: 2; box-shadow: var(--shadow-md); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .role-bar h3 { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .role-bar p { font-size: 14px; color: var(--text); line-height: 1.5; }
+  section { margin-bottom: 56px; }
+  section h2 { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  section h2 .section-num { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--green); letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+  section p { margin-bottom: 16px; color: var(--text); }
+  .callout { background: var(--green-light); border-left: 4px solid var(--green); padding: 20px 24px; border-radius: 0 6px 6px 0; margin: 24px 0; }
+  .callout p { margin: 0; font-size: 14px; color: var(--text); line-height: 1.6; }
+  .callout.teal { background: var(--teal-light); border-color: var(--teal); }
+  .callout.orange { background: var(--orange-light); border-color: var(--orange); }
+  .callout.purple { background: var(--purple-light); border-color: var(--purple); }
+  .theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .theme-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; border-left: 4px solid var(--green); }
+  .theme-card:nth-child(2) { border-left-color: var(--teal); }
+  .theme-card:nth-child(3) { border-left-color: var(--olive); }
+  .theme-card:nth-child(4) { border-left-color: var(--orange); }
+  .theme-card:nth-child(5) { border-left-color: var(--purple); grid-column: 1 / -1; }
+  .theme-card h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .theme-card p { font-size: 13px; color: var(--text-light); margin: 0; line-height: 1.55; }
+  .stage-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+  .stage-item { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; border-top: 3px solid var(--green); text-align: center; }
+  .stage-item:nth-child(2) { border-top-color: var(--teal); }
+  .stage-item:nth-child(3) { border-top-color: var(--olive); }
+  .stage-item:nth-child(4) { border-top-color: var(--orange); }
+  .stage-item .num { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--text); }
+  .stage-item .label { font-size: 12px; font-weight: 500; color: var(--text-light); margin-top: 4px; }
+  .quote { background: var(--teal-light); padding: 24px 28px; border-radius: 6px; margin: 24px 0; position: relative; }
+  .quote::before { content: '\201C'; font-family: var(--serif); font-size: 48px; color: var(--teal); line-height: 1; position: absolute; top: 12px; left: 20px; }
+  .quote p { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--text); margin: 0 0 0 20px; line-height: 1.6; }
+  .quote cite { display: block; font-family: var(--sans); font-size: 12px; font-style: normal; color: var(--text-muted); margin-top: 10px; margin-left: 20px; }
+  .component-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+  .component-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 18px; border-top: 3px solid var(--green); }
+  .component-card:nth-child(2) { border-top-color: var(--teal); }
+  .component-card:nth-child(3) { border-top-color: var(--olive); }
+  .component-card:nth-child(4) { border-top-color: var(--orange); }
+  .component-card h4 { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .component-card p { font-size: 12px; color: var(--text-light); margin: 0; line-height: 1.5; }
+  .hyp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 24px 0; }
+  .hyp-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; }
+  .hyp-card .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; }
+  .hyp-card .tag.red { background: var(--red-light); color: #B34040; }
+  .hyp-card .tag.orange { background: var(--orange-light); color: #B36820; }
+  .hyp-card .tag.green { background: var(--green-light); color: var(--green-dark); }
+  .hyp-card h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .hyp-card p { font-size: 12px; color: var(--text-light); margin: 0; line-height: 1.5; }
+  .divider { width: 48px; height: 3px; background: var(--green); margin: 48px 0; border-radius: 2px; }
+  .footer { background: #2D3D1E; color: rgba(255,255,255,0.6); padding: 40px 0; margin-top: 64px; text-align: center; font-size: 13px; }
+  .footer strong { color: rgba(255,255,255,0.85); }
+  @media print { .hero { padding: 40px 0 30px; } section { page-break-inside: avoid; } body { font-size: 13px; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">UX Research Case Study</div>
+    <h1>MindWell: Bridging the Gap<br>from Awareness to Access</h1>
+    <p class="hero-subtitle">A behavioural science approach to understanding why young adults delay seeking mental health care, and a design concept built to shorten the path to a first appointment.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Vi Conrad</strong>UX Researcher</div>
+      <div class="hero-meta-item"><strong>HCI 516</strong>Behavioral Science &amp; UX</div>
+      <div class="hero-meta-item"><strong>DePaul University</strong>Winter 2026</div>
+      <div class="hero-meta-item"><strong>Team of 5</strong>10-week project</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="role-bar">
+    <div>
+      <h3>My Role</h3>
+      <p>UX Researcher, Front-End Prototyping, Data Analysis, Presentation Design</p>
+    </div>
+    <div>
+      <h3>Methods</h3>
+      <p>Semi-structured interviews, thematic analysis, behavioural archetype development, journey mapping</p>
+    </div>
+    <div>
+      <h3>Team</h3>
+      <p>Vi Conrad, Dessi Lang, Nha Pham, Pranavi Kandukuri, Tammy-Elizabeth Knox</p>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="section-num">01 The Problem</span>The System Works Against People Who Are Ready to Act</h2>
+    <p>Mental health resources exist. Therapy is more normalised than it has ever been, especially among adults aged 18 to 35. And yet, young adults who recognise they need help still struggle to get to a first appointment. The problem isn't awareness of mental health as a concept. It's that the path from recognising a need to sitting in a therapist's office is fragmented, confusing, and full of friction.</p>
+    <p>We wanted to understand what happens between the moment someone decides they need help and the moment they actually schedule an appointment. Where do people get stuck? What pushes them forward? And what could a well-placed intervention do to shorten that gap?</p>
+    <div class="callout">
+      <p><strong>Research Questions:</strong> How can access to mental health services be increased for students and young professionals? What barriers prevent them from accessing mental health services?</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">02 The Research</span>9 Interviews, One Recurring Story</h2>
+    <p>We conducted 9 semi-structured interviews over Zoom with help-seekers aged 18 to 35. Each session lasted about 45 minutes and covered five topic areas: current stress and mental health, the decision to seek help, the process of finding a provider, social and cultural influences, and trust in the therapeutic relationship.</p>
+    <p>Our original plan included both help-seekers and non-help-seekers. Our one non-help-seeker participant was a no-show, so our findings are weighted entirely toward people who have already navigated the system. That's a real limitation, and it's worth noting that recruiting someone who hadn't sought help was harder than recruiting those who had. Whether that says something about our team's networks, our generation, or a broader cultural shift toward normalised help-seeking is an open question.</p>
+    <p>What we found was consistent across nearly all 9 sessions. Participants described a four-stage journey, and the barriers shifted at each stage but compounded as they went.</p>
+    <div class="stage-row">
+      <div class="stage-item"><div class="num">1</div><div class="label">Becoming<br>Aware</div></div>
+      <div class="stage-item"><div class="num">2</div><div class="label">Internal<br>Deliberation</div></div>
+      <div class="stage-item"><div class="num">3</div><div class="label">Researching &amp;<br>Searching</div></div>
+      <div class="stage-item"><div class="num">4</div><div class="label">Scheduling</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">03 Emerging Themes</span>Five Patterns Across Nine Sessions</h2>
+    <p>After coding and analysing all 9 transcripts, five themes emerged consistently. Each maps to a different part of the help-seeking journey and reveals a specific type of barrier.</p>
+    <div class="theme-grid">
+      <div class="theme-card">
+        <h4>1. The Crisis Threshold</h4>
+        <p>Participants normalised their struggles until a breaking point forced action. 8 of 9 described functioning through distress before reaching a moment where the cost of staying away from help became undeniable.</p>
+      </div>
+      <div class="theme-card">
+        <h4>2. Peer Influence as Catalyst and Permission</h4>
+        <p>Peers shaped both the timing and the comfort level of help-seeking. For some, a friend's experience was the direct trigger. For others, peers didn't push the decision but made it feel acceptable.</p>
+      </div>
+      <div class="theme-card">
+        <h4>3. The Navigation Phase</h4>
+        <p>Even after deciding to seek help, participants faced outdated provider lists, confusing insurance routing, no central starting point, and scheduling conflicts with business hours.</p>
+      </div>
+      <div class="theme-card">
+        <h4>4. Competing Norms Across Social Contexts</h4>
+        <p>Therapy was normalised among friends but not in workplaces, families, or cultural communities. Participants managed what they shared based on context.</p>
+      </div>
+      <div class="theme-card">
+        <h4>5. Trust Requires Authentic Connection</h4>
+        <p>Every participant had specific trust criteria for providers. Identity fit, communication style, and openness were dealbreakers. A poor first match could end the process entirely.</p>
+      </div>
+    </div>
+    <div class="quote">
+      <p>I sat in my driveway and got super emotional. I was just like, something is wrong.</p>
+      <cite>Help-Seeker, Session EP008</cite>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">04 Hypothesis Check-In</span>What We Predicted vs. What We Found</h2>
+    <p>We entered the research with three hypotheses. By the end of the study, only one held up as written.</p>
+    <div class="hyp-grid">
+      <div class="hyp-card">
+        <span class="tag red">Not Supported</span>
+        <h4>H1: Information Overload</h4>
+        <p>We predicted too much information would overwhelm people. The opposite was true: too little useful information, scattered across too many places. We reframed this as information inaccessibility.</p>
+      </div>
+      <div class="hyp-card">
+        <span class="tag orange">Partially Supported</span>
+        <h4>H2: Perceived Public Stigma</h4>
+        <p>Stigma wasn't a barrier among peers. It showed up in families, workplaces, and cultural backgrounds. Context-dependent, not universal.</p>
+      </div>
+      <div class="hyp-card">
+        <span class="tag green">Strongly Supported</span>
+        <h4>H3: System Complexity</h4>
+        <p>The most consistent barrier. Insurance limits, provider discovery friction, scheduling conflicts, and cost created delays at the exact moment people were ready to act.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">05 Behavioural Archetype</span>The High-Functioning Holdout</h2>
+    <p>Our research produced one behavioural archetype that described 8 of our 9 participants. We called them The High-Functioning Holdout: a young adult who is struggling quietly, performing well enough on the outside that the need for help doesn't feel "real enough" to act on. They delay seeking help not because they don't believe in therapy, but because their coping strategies are still working, until they aren't.</p>
+    <p>The trigger to seek help is rarely a plan. It's a moment of pain where the cost of avoiding help becomes greater than the fear of seeking it. EP008 broke down in their driveway. FR003 went on an international trip and felt nothing. SP007 noticed the anxiety kept cycling no matter what stressor she cleared.</p>
+    <p>KC004 represented an alternate pathway. With a pre-existing mental health advocacy background, they experienced minimal deliberation delay. But even KC004 followed the same internal logic: recognise distress, deliberate, research, schedule.</p>
+    <div class="quote">
+      <p>As long as I'm functioning and working and getting stuff done, I don't need a therapist. But to see what my friend went through kind of pushed me to just give a therapist a try.</p>
+      <cite>Help-Seeker, Session RM001</cite>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">06 Design Concept</span>MindWell: A Connected Ecosystem</h2>
+    <p>The problem with mental health access is not one barrier. It is a chain of them, and they compound. Someone who finally decides to seek help still has to figure out insurance, find a provider they trust, and schedule around a workday. That chain is where people drop off.</p>
+    <p>Instead of building one tool that addresses one barrier, we designed a connected set of tools that covers the full chain. Each component is tied to a specific decision lever from our research.</p>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Workshop + Campaign</h4>
+        <p>90-minute educational workshop and social media storytelling. Makes distress feel personally applicable before someone hits a crisis.</p>
+      </div>
+      <div class="component-card">
+        <h4>Self-Assessment Tool</h4>
+        <p>Non-clinical questionnaire that asks whether coping strategies are still working. Signals when the threshold may be approaching.</p>
+      </div>
+      <div class="component-card">
+        <h4>Provider Directory</h4>
+        <p>Filterable by specialty, insurance, and identity fit. Puts the information participants were searching for in one place.</p>
+      </div>
+      <div class="component-card">
+        <h4>Direct Scheduling</h4>
+        <p>Async intake outside business hours. Transparent costs. Reduces friction at the moment of highest resolve.</p>
+      </div>
+    </div>
+    <div class="callout teal">
+      <p><strong>Decision Levers:</strong> Each component targets a specific behavioural lever: coping depletion cue (self-assessment), social proof (workshop and marketing), trust (identity fit filters), and friction reduction (scheduling integration).</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2><span class="section-num">07 Reflection</span>What I Took Away from This Project</h2>
+    <p>This project confirmed something I had been thinking about for a while. I get more energy from understanding why a design decision makes sense than from designing the screens themselves. The analysis work, going through transcripts, tagging themes, connecting participant stories to behavioural patterns, was where I was most engaged. It's pushing me toward UX research as a career direction.</p>
+    <p>The biggest lesson was about pacing. Our lowest score came from presenting Emerging Themes based on two interviews when we needed nine. The data wasn't there yet, and it showed. Every submission after that improved because we had the evidence to back up what we were saying. The work wasn't better because we got smarter. It was better because we had the data.</p>
+    <p>I'd also communicate more proactively in future projects. There were moments during the quarter where life events pulled me away from team coordination, and I waited too long to flag that. In a remote team especially, silence gets interpreted as disengagement. Saying "I'm going to be less available this week" early is better than going quiet and trying to catch up after.</p>
+    <p>Studying behavioural science in a UX context changed how I think about design problems. The connection between research findings and design decisions doesn't have to be vague. If you can name the behavioural lever you're targeting, you can defend every design choice with evidence. That's the approach I want to take forward.</p>
+  </section>
+
+</div>
+
+<div class="footer">
+  <strong>MindWell</strong> &nbsp;&middot;&nbsp; Vi Conrad &nbsp;&middot;&nbsp; DePaul University &nbsp;&middot;&nbsp; HCI 516 &nbsp;&middot;&nbsp; 2026
+</div>
+
+</body>
+</html>
